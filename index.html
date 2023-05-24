@@ -8,5 +8,11 @@
 	</head>
 	<body>
 		<div id="root"></div>
+		<script>
+		if (
+			/.+?\.github\..+/.test(location.hostname) &&
+			!/\/dist\/?$/.test(location.pathname)
+		) location.replace("./dist/");
+		</script>
 		<script type="module" src="/src/main.jsx" ></script> </body>
 </html>
