@@ -17,7 +17,7 @@ function PokemonRow(props) {
 	const { bulbasaur } = props;
 	// renders a row with the name, id, type and sprite image
 	const { name, id, types } = bulbasaur;
-	const sprite = `${mode === "production" ? "./dist/" : "../"}assets/${
+	const sprite = `${mode === "production" ? "./" : "../"}assets/${
 		bulbasaur.sprite
 	}`;
 	return (
