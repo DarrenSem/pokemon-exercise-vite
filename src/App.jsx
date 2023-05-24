@@ -1,7 +1,8 @@
 // import { useState } from "react";
 // import "./App.css";
 
-const mode = /\/dist\/?/.test(location.pathname) ? "production" : "development"; // TODO: temp
+// TODO: future make this use process.env (see vite.config.js)
+const mode = /\/dist\/?/.test(location.pathname) ? "production" : "development";
 
 const bulbasaur = {
 	id: 1,
