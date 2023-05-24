@@ -1,55 +1,45 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+// import { useState } from "react";
+// import "./App.css";
+
+const mode = /\/dist\/?/.test(location.pathname) ? "production" : "development"; // TODO: temp
+
+const bulbasaur = {
+	id: 1,
+	name: "Bulbasaur",
+	types: ["grass"],
+	// sprite: "https://pokemon.com/pictures/bulbasaur.png",
+	sprite: "001.png",
+};
+
+// reusable <PokemonRow /> component (or the equivalent in your framework)
+function PokemonRow(props) {
+	//  takes in bulbasaur as a property
+	const { bulbasaur } = props;
+	// renders a row with the name, id, type and sprite image
+	const { name, id, types } = bulbasaur;
+	const sprite = `${mode === "production" ? "./dist/" : "../"}assets/${
+		bulbasaur.sprite
+	}`;
+	return (
+		<table border="1">
+			<td>name: {name}</td>
+			<td>id: {id}</td>
+			<td>type: {types}</td>
+			<td>
+				<img
+					src={sprite}
+					width={"50%"}
+				/>
+			</td>
+		</table>
+	);
+}
 
 function App() {
-	const [count, setCount] = useState(0);
-
-	// EXAMPLE: eslint-disable-next-line no-unused-vars
-	// let unused = 9;
-	// or .eslintrc.cjs: rules: { ..., 'no-unused-vars': 'warn', ... }
-
-	/* eslint-disable react/jsx-no-target-blank */
-	// eslint-disable-next-line react/jsx-no-target-blank
-	return (
-		<>
-			<div>
-				<a
-					href="https://vitejs.dev"
-					target="_blank"
-				>
-					<img
-						src={viteLogo}
-						className="logo"
-						alt="Vite logo"
-					/>
-				</a>
-				<a
-					href="https://react.dev"
-					target="_blank"
-				>
-					<img
-						src={reactLogo}
-						className="logo react"
-						alt="React logo"
-					/>
-				</a>
-			</div>
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount(count => count + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.jsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn m0r3
-			</p>
-		</>
-	);
+	// TODO: #2 "Part 1" create a reusable component
+	// https://t3-tools.notion.site/Pokedex-Problem-90f9dcfff10d4418a6fad44581b1ecff
+	// create a reusable <PokemonRow /> component (or the equivalent in your framework) that takes in bulbasaur as a property and renders a row with the name, id, type and sprite image
+	return <PokemonRow bulbasaur={bulbasaur} />;
 }
 
 export default App;
