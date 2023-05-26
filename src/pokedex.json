@@ -1,0 +1,9 @@
+[
+	{
+		"id": 1,
+		"name": "Bulbasaur",
+		"types": ["grass"],
+		"sprite": "001.png",
+		"404_sprite": "https://pokemon.com/pictures/bulbasaur.png"
+	}
+]
