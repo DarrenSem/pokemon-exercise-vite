@@ -1,10 +1,10 @@
-import { mode } from "./utils";
+import { IMG_PATH } from "./utils";
 
 // reusable <PokemonRow /> component (or the equivalent in your framework)
 export function PokemonRow({ pokemon }) {
 	// renders a row with the name, id, type and sprite image
 	const { name, id, types } = pokemon;
-	const sprite = `${mode === "production" ? "./" : "../"}assets/${
+	const sprite = `${IMG_PATH}${
 		pokemon.sprite
 	}`;
 	return (
