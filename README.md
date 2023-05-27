@@ -18,7 +18,7 @@ Theo - t3․gg
 May 15, 2023
 
 # TODO:
-- get it to work locally using Vite/JSX
-- setup CI/CD on GitHub so I can push from local VSC
-- setup GitHub Pages to deploy when `gh-pages` branch updates for published "Final Answer"
+- DONE get it to work locally using Vite/JSX
+- DONE setup CI/CD on GitHub so I can push from local VSC
+- DONE setup GitHub Pages to deploy when `gh-pages` branch updates for published "Final Answer"
 - add features that let me get more experience with things like Redux, maybe MongoDB and/or localStorage, export/import/drag-and-drop?
