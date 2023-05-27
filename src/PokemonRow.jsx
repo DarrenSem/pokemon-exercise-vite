@@ -14,7 +14,7 @@ export function PokemonRow({ pokemon }) {
 			<tr>
 				<td>{name}</td>
 				<td>{id}</td>
-				<td>{types}</td>
+				<td>{types.join(", ")}</td>
 				<td>
 					<img
 						src={sprite}
