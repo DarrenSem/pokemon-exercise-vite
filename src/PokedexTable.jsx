@@ -1,7 +1,6 @@
-import { PokemonRow } from "./PokemonRow";
+import PokemonRow from "./PokemonRow";
 
-export function PokedexTable({ pokedex }) {
-	// for each pokemon render PokemonRow(pokemon)
+export default function PokedexTable({ pokedex }) {
 	return (
 		<table border="1">
 			<thead>
