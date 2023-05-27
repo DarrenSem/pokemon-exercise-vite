@@ -1,1 +1,58 @@
 /* main.css */
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+
+	margin: 0 auto;
+	max-width: 600px;
+
+	width: 100%;
+	border: 1px solid #ddd;
+
+	/* font-family: Arial, Helvetica, sans-serif */
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	/* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+}
+
+th,
+td {
+	text-align: center;
+	padding: 16px;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+table thead th:nth-child(1),
+table tbody td:nth-child(1) {
+	text-align: right;
+	vertical-align: auto;
+}
+
+table thead th:nth-child(4),
+table tbody td:nth-child(4) {
+	text-align: left;
+}
+
+@media (max-width: 600px) {
+	table thead {
+		display: none;
+	}
+
+	table tbody tr {
+		display: block;
+		margin-bottom: 10px;
+	}
+
+	/* table tbody td { */
+	table tbody td {
+		display: block;
+	}
+
+	table tbody td:nth-child(1),
+	table tbody td:nth-child(4) {
+		text-align: center;
+	}
+}

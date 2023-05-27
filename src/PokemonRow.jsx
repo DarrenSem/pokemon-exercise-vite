@@ -4,17 +4,24 @@ import { mode } from "./utils";
 export function PokemonRow({ pokemon }) {
 	// renders a row with the name, id, type and sprite image
 	const { name, id, types } = pokemon;
-	const sprite = `${mode === "production" ? "./" : "../"}assets/${pokemon.sprite}`;
+	const sprite = `${mode === "production" ? "./" : "../"}assets/${
+		pokemon.sprite
+	}`;
 	return (
-		<tr>
-			<td>name: {name}</td>
-			<td>id: {id}</td>
-			<td>type: {types}</td>
-			<td>
-				<img
-					src={sprite}
-					width={"50%"} />
-			</td>
-		</tr>
+		name &&
+		id &&
+		types && (
+			<tr>
+				<td>{name}</td>
+				<td>{id}</td>
+				<td>{types.join(", ")}</td>
+				<td>
+					<img
+						src={sprite}
+						width={"50%"}
+					/>
+				</td>
+			</tr>
+		)
 	);
 }
