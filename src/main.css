@@ -56,3 +56,8 @@ table tbody td:nth-child(4) {
 		text-align: center;
 	}
 }
+
+.type-selector {
+	text-align: center;
+	margin-bottom: 10px;
+}
