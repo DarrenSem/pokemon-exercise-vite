@@ -1,0 +1,76 @@
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+
+	margin: 0 auto;
+	max-width: 600px;
+
+	width: 100%;
+	border: 1px solid #ddd;
+
+	/*display: flex;*/
+	/*flex-direction: column;*/
+}
+
+th,
+td {
+	text-align: left;
+	padding: 16px;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+@media (max-width: 600px) {
+	table thead {
+		display: none;
+	}
+
+	table tbody tr {
+		display: block;
+		margin-bottom: 10px;
+	}
+
+	table tbody td {
+		display: block;
+		text-align: right;
+	}
+
+	/*			table {
+				width:  100%;
+			}
+*/
+}
+
+table tbody td:nth-child(2) {
+	text-align: center;
+	vertical-align: middle;
+}
+
+table tbody td:nth-child(3) {
+	text-align: center;
+}
+
+/*Will this change in alignment be just for when it is less than 640 pixels? Or always?*/
+
+/*Apologies for the confusion. Based on your question, it seems you would like the alignment changes to apply always, regardless of the screen width. Here's the updated CSS code that includes the alignment changes for all screen sizes:
+
+In this updated CSS code, the alignment changes for the second and third columns are moved outside of the media query. This ensures that the alignment changes apply regardless of the screen width.
+
+Now, the second column will be vertically centered with right-justified content, and the third column will be horizontally centered. These alignment changes will be present at all times.
+*/
+
+/*Update the CSS so 3rd column is centered horizontally, the 2nd column is centered vertical but right justified*/
+
+/*In this updated CSS code, I've added additional styles within the media query to center the third column horizontally (text-align: center;) and center the second column vertically while right-justifying its content. The styles for the third column are applied using the :nth-child(3) selector, while the styles for the second column are applied using the :nth-child(2) selector.
+
+With these modifications, the third column will be horizontally centered, the second column will be vertically centered with right-justified content, and the table will stack into rows on smaller screens.
+*/
+
+/*Redo the responsive CSS so that when the screen width is less than 600 it will push each column into its own row, instead of being squished*/
+
+/*In this updated CSS code, I've modified the media query to stack the table columns into individual rows when the screen width is less than 600 pixels. The table header (thead) is hidden using display: none; within the media query. The table rows within the tbody are displayed as block elements with some margin for separation. The table cells (td) are also displayed as block elements with the text aligned to the right.
+
+This way, the table will adapt to smaller screens by displaying each column in its own row, providing a better viewing experience on narrower devices.
+*/
