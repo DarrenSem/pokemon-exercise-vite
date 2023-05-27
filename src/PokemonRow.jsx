@@ -1,12 +1,10 @@
 import { IMG_PATH } from "./utils";
 
-// reusable <PokemonRow /> component (or the equivalent in your framework)
-export function PokemonRow({ pokemon }) {
-	// renders a row with the name, id, type and sprite image
+export default function PokemonRow({ pokemon }) {
 	const { name, id, types } = pokemon;
-	const sprite = `${IMG_PATH}${
-		pokemon.sprite
-	}`;
+
+	const sprite = `${IMG_PATH}${pokemon.sprite}`;
+
 	return (
 		name &&
 		id &&
