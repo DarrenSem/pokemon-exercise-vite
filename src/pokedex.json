@@ -1,0 +1,26 @@
+[
+	{
+		"id": 1,
+		"name": "Bulbasaur",
+		"types": ["grass"],
+		"sprite": "001.png"
+	},
+	{
+		"id": 2,
+		"name": "Ivysaur",
+		"types": ["poison"],
+		"sprite": "002.png"
+	},
+	{
+		"id": 3,
+		"name": "Venusaur",
+		"types": ["grass", "poison"],
+		"sprite": "003.png"
+	},
+	{
+		"id": 4,
+		"name": "Charmander ",
+		"types": ["fire"],
+		"sprite": "004.png"
+	}
+]
