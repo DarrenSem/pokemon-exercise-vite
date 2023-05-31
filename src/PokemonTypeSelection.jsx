@@ -22,11 +22,14 @@ export default function PokemonTypeSelection({ pokedex, updateType, showing }) {
 
 	return (
 		<div className="type-selector">
+			{/* <label htmlFor="typeSelect">🝖 Type: </label> */}
+			<label htmlFor="typeSelect">🧲 Type: </label>
 			<select
+				id="typeSelect"
 				onChange={evt => updateType(evt.target.value)}
 				autoFocus // cleaner than relying on selectRef = useRef(null); <select ref={selectRef}>
 			>
-				<option value={""}>-no filter-</option>
+				<option value={""}>- no filter -</option>
 				{options}
 				<option value={"-"}>...fog.of.war...</option>
 			</select>{" "}
