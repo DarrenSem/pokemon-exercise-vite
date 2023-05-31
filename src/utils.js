@@ -18,4 +18,6 @@ export const IMG_PATH = (
     )
 ) + "assets/";
 
+export const STORE_KEY = "POKEDEX";
+
 console.log({ isLocal }, { mode }, { IMG_PATH });

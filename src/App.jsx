@@ -2,9 +2,13 @@ import FilterablePokedexTable from "./FilterablePokedexTable";
 import pokemonArray from "./pokedex.json";
 
 function App() {
-	// TODO: #11 "Part 3" create a FilterablePokedexTable and PokemonTypeSelection
-	// https://t3-tools.notion.site/Pokedex-Problem-90f9dcfff10d4418a6fad44581b1ecff
-	// create <FilterablePokedexTable /> to render <PokemonTypeSelection /> and filtered <PokedexTable />
+	// TODO: #15 Add free-text search field, toggles if URL /search , else current (type select dropdown)
+	// DONE create <PokemonNameSearch />
+	// DONE add to <FilterablePokedexTable />
+	// localStorage save+load for easier testing ( if querystring ?store )
+	// use reacter-router-dom to toggle
+	// maybe add a route called /both (because then it combines)
+	// also when I am NOT showing BOTH, make sure it does not consider BOTH in the filtering
 
 	return <FilterablePokedexTable pokedex={pokemonArray} />;
 }
