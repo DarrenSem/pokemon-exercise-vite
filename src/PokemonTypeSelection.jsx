@@ -3,7 +3,7 @@ export default function PokemonTypeSelection({
 	updateType,
 	showing,
 	selectedType,
-	// focused,
+	focusFields,
 }) {
 	const types = Array.from(
 		new Set(
@@ -25,7 +25,7 @@ export default function PokemonTypeSelection({
 	));
 	// console.log({ selectedType, options });
 
-	// console.warn("focused.type:", focused.type);
+	// console.warn("focusFields(type)", focusFields);
 	return (
 		<div className="type-selector">
 			{/* <label htmlFor="typeSelect">🝖 Type: </label> */}
@@ -36,8 +36,8 @@ export default function PokemonTypeSelection({
 				{" Type: "}
 			</label>
 			<select
-				// autoFocus={focused.type ? 1 : 0} // cleaner than relying on selectRef = useRef(null); <select ref={selectRef}>
-				// ref={focusType}
+				// autoFocus // cleaner than relying on selectRef = useRef(null); <select ref={selectRef}>
+				ref={focusFields.type}
 				id="typeSelect"
 				onChange={evt => updateType(evt.target.value)}
 				value={selectedType ?? ""}

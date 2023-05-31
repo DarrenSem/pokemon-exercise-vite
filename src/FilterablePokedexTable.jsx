@@ -3,7 +3,7 @@ import PokemonNameSearch from "./PokemonNameSearch";
 import PokedexTable from "./PokedexTable";
 import { STORE_KEY } from "./utils";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const loadFromStorage = () => {
 	const json = localStorage.getItem(STORE_KEY);
@@ -12,28 +12,31 @@ const loadFromStorage = () => {
 	if (!json) return;
 
 	const stored = JSON.parse(json);
-	const { focused, filters } = stored;
-	console.log({ focused, filters });
+	const { filters, focusField } = stored;
+	console.log(filters);
+
 	// debugger;
-
-	const { nameSearch: name } = filters;
 	const { selectedType: type } = filters;
-	console.log("loadFromStorage:", { focused, name, type });
+	const { nameSearch: name } = filters;
+	console.log("loadFromStorage:", { type, name, focusField });
 
-	return [focused, type, name];
-
-	// TODO: only thing remaining is make it VISIBLY select in the dropdown and/or the text field.
-	// I guess I need to useRef to update the dropdown/input fields
+	return [focusField, type, name];
 };
+
+const stateDefaults = ["type", "grass"];
+
+let focusFields;
 
 export default function FilterablePokedexTable({ pokedex, foo, bar }) {
 	console.log("\n>>>TOP OF FilterablePokedexTable", new Date());
 	// DONE: localStorage save+load for easier testing ( if querystring ?store )
 
-	const defaults = useMemo(() => [{ type: 1 }, "grass"], []);
-	const [focused, setFocused] = useState(defaults[0]);
-	const [selectedType, setSelectedType] = useState(defaults[1]);
-	const [nameSearch, setNameSearch] = useState(defaults[2]);
+	const [selectedType, setSelectedType] = useState(stateDefaults[1]);
+	const [nameSearch, setNameSearch] = useState(stateDefaults[2]);
+
+	// debugger;
+
+	focusFields = { type: useRef(null), name: useRef(null) };
 
 	useEffect(() => {
 		console.log("\n---useEffect TOP");
@@ -42,20 +45,17 @@ export default function FilterablePokedexTable({ pokedex, foo, bar }) {
 		// console.log({ shouldStore }); // now ALWAYS instead of just when querystring ?store
 
 		const [loadedFocus, loadedType, loadedName] =
-			(shouldStore && loadFromStorage()) || defaults;
+			(shouldStore && loadFromStorage()) || stateDefaults;
 
 		if (loadedFocus != null) {
-			setFocused(loadedFocus);
-			// setFocused(() => {
 			// debugger;
-			// 	return loadedFocus;
-			// });
+			focusFields[loadedFocus]?.current.focus();
 		}
 		setSelectedType(() => loadedType ?? "");
 		setNameSearch(() => loadedName ?? "");
 
 		// }, [defaultType, defaultName]);
-	}, [defaults]); // [] = only run on first load
+	}, []); // [] = only run on first load
 
 	const storeFilters = propsChanged => {
 		const shouldStore = true || /[?&]store\b/i.test(location.search);
@@ -63,7 +63,7 @@ export default function FilterablePokedexTable({ pokedex, foo, bar }) {
 		if (!shouldStore) return;
 
 		const { filterType, filterName } = propsChanged;
-		let focus = {};
+		let focus;
 		const filters = {
 			selectedType: selectedType || undefined,
 			nameSearch: nameSearch || undefined,
@@ -73,15 +73,15 @@ export default function FilterablePokedexTable({ pokedex, foo, bar }) {
 		if (filterType != null) {
 			console.log("updated filterType:", { filterType });
 			filters.selectedType = filterType.trim().length ? filterType : undefined;
-			focus = { type: 1 };
+			focus = "type";
 		}
 		if (filterName != null) {
 			console.log("updated filterName:", { filterName });
 			filters.nameSearch = filterName.trim().length ? filterName : undefined;
-			focus = { name: 1 };
+			focus = "name";
 		}
 
-		const stored = { focused: focus, filters };
+		const stored = { focusField: focus, filters };
 		const json = JSON.stringify(stored, null, "\t");
 		console.log("\n**json saved:", json);
 		// debugger;
@@ -89,17 +89,19 @@ export default function FilterablePokedexTable({ pokedex, foo, bar }) {
 	};
 
 	const updateType = next => {
-		setFocused({ type: 1 });
+		// debugger;
 		setSelectedType(next);
 		console.log({ selectedType }, "=>", next);
 		storeFilters({ filterType: next });
+		focusFields.type?.current.focus();
 	};
 
 	const updateNameSearch = next => {
-		setFocused({ name: 1 });
+		// debugger;
 		setNameSearch(next.trim().toLowerCase());
 		console.log({ nameSearch }, "=>", next);
 		storeFilters({ filterName: next });
+		focusFields.name?.current.focus();
 	};
 
 	const filteredPokedex = pokedex.filter(el => {
@@ -119,13 +121,13 @@ export default function FilterablePokedexTable({ pokedex, foo, bar }) {
 				updateType={updateType}
 				showing={showing}
 				selectedType={selectedType}
-				focused={focused}
+				focusFields={focusFields}
 			/>
 			<PokemonNameSearch
 				updateNameSearch={updateNameSearch}
 				showing={showing}
 				nameSearch={nameSearch}
-				focused={focused}
+				focusFields={focusFields}
 			/>
 			<PokedexTable pokedex={filteredPokedex} />
 		</>
